@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.skillplus.backend.modal.Like;
 import com.skillplus.backend.service.LikeService;
-
+// made controle repo
 @RestController
 @RequestMapping("/app/like")
 @CrossOrigin(origins = "http://localhost:3000/")
