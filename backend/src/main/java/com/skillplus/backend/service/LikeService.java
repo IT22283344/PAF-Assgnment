@@ -12,6 +12,8 @@ import com.skillplus.backend.repository.LikeRepository;
 import com.skillplus.backend.repository.PostRepository;
 import com.skillplus.backend.repository.UserRepository;
 
+
+// create post service class
 @Service
 public class LikeService {
 
