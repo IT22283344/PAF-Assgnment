@@ -12,6 +12,7 @@ import jakarta.persistence.UniqueConstraint;
 import lombok.Getter;
 import lombok.Setter;
 
+// add the user entity class
 @Getter
 @Setter
 @Entity
