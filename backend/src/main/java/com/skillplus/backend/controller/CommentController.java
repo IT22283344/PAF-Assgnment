@@ -44,4 +44,6 @@ public class CommentController {
         return "Comment deleted successfully";
     }
 
+
+    // create the post controller class
 }
