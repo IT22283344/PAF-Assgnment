@@ -6,7 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import com.skillplus.backend.modal.Like;
-
+// made the user repo
 @Repository
 public interface LikeRepository extends JpaRepository<Like, Long> {
     List<Like> findLikeByUserId(Long userId);
