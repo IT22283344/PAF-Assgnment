@@ -2,15 +2,15 @@ package com.skillplus.backend.service;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 import com.skillplus.backend.modal.Comment;
-import com.skillplus.backend.modal.Post;
-import com.skillplus.backend.modal.User;
 import com.skillplus.backend.repository.CommentRepository;
 import com.skillplus.backend.repository.PostRepository;
 import com.skillplus.backend.repository.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.skillplus.backend.modal.Post;
+import com.skillplus.backend.modal.User;
 
 @Service
 public class CommentService {

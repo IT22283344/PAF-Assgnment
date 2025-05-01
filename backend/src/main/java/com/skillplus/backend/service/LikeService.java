@@ -2,15 +2,15 @@ package com.skillplus.backend.service;
 
 import java.util.List;
 
+import com.skillplus.backend.repository.LikeRepository;
+import com.skillplus.backend.repository.PostRepository;
+import com.skillplus.backend.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.skillplus.backend.modal.Like;
 import com.skillplus.backend.modal.Post;
 import com.skillplus.backend.modal.User;
-import com.skillplus.backend.repository.LikeRepository;
-import com.skillplus.backend.repository.PostRepository;
-import com.skillplus.backend.repository.UserRepository;
 
 @Service
 public class LikeService {
