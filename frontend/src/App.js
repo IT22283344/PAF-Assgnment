@@ -7,6 +7,7 @@ import UserCreatePost from "./Component/UserPost/UserCreatePost";
 import UserEdit from "./Component/UserDetails/UserEdit";
 import UserDetails from "./Component/UserDetails/UserDetails";
 import UserDelete from "./Component/UserActions/UserDelete";
+import Addtodo from "./Component/Todolist/Addtodo";
 const App = () => {
   return (
     <div>
@@ -18,8 +19,9 @@ const App = () => {
           <Route path="/posts/createpost" element={<UserCreatePost />} />
           <Route path="/posts/userdetails" element={<UserDetails />} />
           <Route path="/posts/userdetails/useredit" element={<UserEdit />} />
-          <Route path="/posts/userdetails/userdelete" element={<UserDelete />}
-          />
+          <Route path="/posts/userdetails/userdelete" element={<UserDelete />}/>
+          <Route path="/todo/createtodo" element={<Addtodo />} />
+          <Route path="/posts/userdetails" element={<UserDetails />} />
         </Routes>
       </Router>
     </div>

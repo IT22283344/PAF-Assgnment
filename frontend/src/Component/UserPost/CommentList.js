@@ -8,6 +8,7 @@ const CommentList = ({ comments, onDelete }) => {
           <strong>{comment.user.username}</strong>: {comment.content}
         </p>
         <i className="bi bi-trash text-danger" onClick={() => onDelete(comment.id)}></i>
+        <i className="bi bi-trash text-danger" onClick={() => onDelete(comment.id)}></i>
       </div>
     ))
   ) : (

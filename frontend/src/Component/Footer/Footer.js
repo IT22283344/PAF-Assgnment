@@ -17,36 +17,13 @@ const Footer = () => {
                 className="rounded-circle"
               />
               <span className="text-white">
-                © {year} <b>photoShare</b>, Inc
+                © {2025} <b>SkillPlus</b>, Inc
               </span>
             </div>
 
             {/* Social Media Links */}
             <div className="col-md-6 d-flex justify-content-center justify-content-md-end mt-3 mt-md-0">
-              <a
-                href="https://github.com/ruturajjadhav07"
-                className="text-white me-3 social-icon"
-              >
-                <i className="bi bi-github"></i>
-              </a>
-              <a
-                href="https://www.linkedin.com/in/ruturaj-jadhav-0a250821b/"
-                className="text-white me-3 social-icon"
-              >
-                <i className="bi bi-linkedin"></i>
-              </a>
-              <a
-                href="https://x.com/spoiidermon"
-                className="text-white me-3 social-icon"
-              >
-                <i className="bi bi-twitter"></i>
-              </a>
-              <a
-                href="https://www.instagram.com/ruturajj_07/"
-                className="text-white me-3 social-icon"
-              >
-                <i className="bi bi-instagram"></i>
-              </a>
+             
             </div>
           </div>
         </div>

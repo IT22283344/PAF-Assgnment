@@ -19,6 +19,29 @@ import lombok.Setter;
         @UniqueConstraint(columnNames = { "user_id", "post_id" }) // Ensures one like per user-post combination
 })
 public class Like {
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public Post getPost() {
+        return post;
+    }
+
+    public void setPost(Post post) {
+        this.post = post;
+    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
