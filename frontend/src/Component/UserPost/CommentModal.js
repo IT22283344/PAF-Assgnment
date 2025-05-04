@@ -20,14 +20,16 @@ const CommentModal = ({ postId, onClose }) => {
 
   const addComment = (content) => {
     if (!content.trim()) {
-      toast.error("Empty comment cannot be post");
+      toast.error("Empty comment cannot be posted");
       return;
     }
+
     const requestData = {
       content,
       userId: Number(userId),
       postId: Number(postId),
     };
+
     Server.post(`/comment/addcomment`, requestData)
       .then((response) => {
         setComments([...comments, response.data]);
@@ -37,14 +39,30 @@ const CommentModal = ({ postId, onClose }) => {
   };
 
   const deleteComment = (commentId) => {
-    Server.delete(
-      `/comment/deletecomment?commentId=${commentId}&userId=${userId}&postId=${postId}`
-    )
+    Server.delete(`/comment/deletecomment?commentId=${commentId}&userId=${userId}&postId=${postId}`)
       .then(() => {
         setComments(comments.filter((comment) => comment.id !== commentId));
-        toast.success("Comment Deleted Successfully");
+        toast.success("Comment deleted successfully");
       })
       .catch((e) => toast.error(e.response.data));
+  };
+
+  const editComment = (commentId, newContent) => {
+    Server.put("/comment/editcomment", {
+      commentId: Number(commentId),
+      userId: Number(userId),
+      postId: Number(postId),
+      content: newContent,
+    })    
+      .then((res) => {
+        setComments((prevComments) =>
+          prevComments.map((comment) =>
+            comment.id === commentId ? res.data : comment
+          )
+        );
+        toast.success("Comment updated successfully");
+      })
+      .catch((e) => toast.error(e.response?.data || "Failed to update comment"));
   };
 
   return (
@@ -53,14 +71,14 @@ const CommentModal = ({ postId, onClose }) => {
         <div className="modal-content">
           <div className="modal-header">
             <h4 className="modal-title">Comments</h4>
-            <button
-              type="button"
-              className="btn-close"
-              onClick={onClose}
-            ></button>
+            <button type="button" className="btn-close" onClick={onClose}></button>
           </div>
           <div className="modal-body">
-            <CommentList comments={comments} onDelete={deleteComment} />
+            <CommentList
+              comments={comments}
+              onDelete={deleteComment}
+              onEdit={editComment}
+            />
           </div>
           <div className="modal-footer">
             <CommentInput onAdd={addComment} />

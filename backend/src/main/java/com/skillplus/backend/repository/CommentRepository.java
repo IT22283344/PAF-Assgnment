@@ -6,6 +6,7 @@ import org.springframework.stereotype.Repository;
 import com.skillplus.backend.modal.Comment;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface CommentRepository extends JpaRepository<Comment, Long> {
@@ -15,5 +16,7 @@ public interface CommentRepository extends JpaRepository<Comment, Long> {
     List<Comment> findByPostId(Long postId);
 
     boolean existsByUserIdAndPostId(long userId, long postId);
+
+    Optional<Comment> findByIdAndUserId(long commentId, long userId);
 
 }
