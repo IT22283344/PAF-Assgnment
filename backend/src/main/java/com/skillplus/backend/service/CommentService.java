@@ -59,6 +59,7 @@ public class CommentService {
         return commentRepository.findByPostId(postId);
     }
 
+    // delete comment
     public String deleteComment(long commentId, long userId, long postId) {
         // Fetch the comment
         Comment comment = commentRepository.findById(commentId)
@@ -81,5 +82,34 @@ public class CommentService {
         commentRepository.delete(comment);
         return "Comment deleted Successfully";
     }
+
+    public Comment editComment(long commentId, long userId, long postId, String newContent) {
+        // Validate new content
+        if (newContent == null || newContent.trim().isEmpty()) {
+            throw new IllegalArgumentException("Comment content cannot be empty");
+        }
+
+        // Fetch the comment
+        Comment comment = commentRepository.findById(commentId)
+                .orElseThrow(() -> new IllegalArgumentException("No comment found."));
+
+        // Validate post association
+        if (!comment.getPost().getId().equals(postId)) {
+            throw new IllegalArgumentException("Comment does not belong to the specified post");
+        }
+
+        // Check if the user is either the comment owner or the post owner
+        boolean isCommentOwner = comment.getUser().getId().equals(userId);
+        boolean isPostOwner = comment.getPost().getUser().getId().equals(userId);
+
+        if (!isCommentOwner && !isPostOwner) {
+            throw new IllegalArgumentException("You cannot edit this comment");
+        }
+
+        // Update and save the comment
+        comment.setContent(newContent);
+        return commentRepository.save(comment);
+    }
+
 
 }
