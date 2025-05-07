@@ -15,7 +15,7 @@ import com.skillplus.backend.modal.User;
 import com.skillplus.backend.service.UserService;
 
 import java.util.List;
-
+// user controller
 @RestController
 @RequestMapping("/app")
 @CrossOrigin(origins = "http://localhost:3000/")
