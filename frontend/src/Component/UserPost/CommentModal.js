@@ -17,26 +17,24 @@ const CommentModal = ({ postId, onClose }) => {
         toast.error(e.response.data);
       });
   }, [postId]);
-
-  const addComment = (content) => {
-    if (!content.trim()) {
-      toast.error("Empty comment cannot be posted");
-      return;
-    }
-
-    const requestData = {
-      content,
-      userId: Number(userId),
-      postId: Number(postId),
-    };
-
-    Server.post(`/comment/addcomment`, requestData)
+  
+  const addComment = (formData) => {
+    formData.append("userId", userId);
+    formData.append("postId", postId);
+  
+    Server.post(`/comment/addcomment`, formData, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    })
       .then((response) => {
         setComments([...comments, response.data]);
         toast.success("Comment added successfully!");
       })
       .catch(() => toast.error("Failed to add comment"));
   };
+  
+  
 
   const deleteComment = (commentId) => {
     Server.delete(`/comment/deletecomment?commentId=${commentId}&userId=${userId}&postId=${postId}`)

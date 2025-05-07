@@ -3,29 +3,36 @@ import React, { useState } from "react";
 const CommentList = ({ comments, onDelete, onEdit }) => {
   const [editingCommentId, setEditingCommentId] = useState(null);
   const [editedContent, setEditedContent] = useState("");
+  const [editedImage, setEditedImage] = useState("");
   const userId = Number(localStorage.getItem("userId")); // Convert to number for accurate comparison
 
   const handleEditClick = (comment) => {
     setEditingCommentId(comment.id);
     setEditedContent(comment.content);
+    setEditedImage(comment.c_image_url);
   };
 
   const handleSaveClick = () => {
     if (editedContent.trim()) {
-      onEdit(editingCommentId, editedContent);
+      onEdit(editingCommentId, editedContent, editedImage);
     }
     setEditingCommentId(null);
     setEditedContent("");
+    setEditedImage("");
   };
 
   const handleCancelClick = () => {
     setEditingCommentId(null);
     setEditedContent("");
+    setEditedImage("");
   };
 
   return comments.length > 0 ? (
     comments.map((comment) => (
-      <div key={comment.id} className="d-flex justify-content-between align-items-center mb-2">
+      <div
+        key={comment.id}
+        className="d-flex justify-content-between align-items-center mb-2"
+      >
         {editingCommentId === comment.id ? (
           <div className="w-100">
             <input
@@ -34,11 +41,24 @@ const CommentList = ({ comments, onDelete, onEdit }) => {
               value={editedContent}
               onChange={(e) => setEditedContent(e.target.value)}
             />
+            <input
+              type="file"
+              accept="image/*"
+              value={editedImage}
+              onChange={(e) => setEditedImage(e.target.files[0])}
+              className="form-control w-auto"
+            />
             <div className="mt-1">
-              <button className="btn btn-sm btn-success me-2" onClick={handleSaveClick}>
+              <button
+                className="btn btn-sm btn-success me-2"
+                onClick={handleSaveClick}
+              >
                 Save
               </button>
-              <button className="btn btn-sm btn-secondary" onClick={handleCancelClick}>
+              <button
+                className="btn btn-sm btn-secondary"
+                onClick={handleCancelClick}
+              >
                 Cancel
               </button>
             </div>
@@ -48,6 +68,20 @@ const CommentList = ({ comments, onDelete, onEdit }) => {
             <p className="m-0">
               <strong>{comment.user.username}</strong>: {comment.content}
             </p>
+            {console.log(comment.cimageUrl)}
+            <div>
+              <img
+                alt="CommentImage"
+                className="card-img-top img-fluid"
+                src={comment.cimageUrl}
+                style={{
+                  maxHeight: "40px",
+                  objectFit: "cover",
+                  borderRadius: "10px",
+                }}
+              />
+            </div>
+
             {comment.user.id === userId && (
               <div>
                 <i
