@@ -8,6 +8,12 @@ import UserEdit from "./Component/UserDetails/UserEdit";
 import UserDetails from "./Component/UserDetails/UserDetails";
 import UserDelete from "./Component/UserActions/UserDelete";
 import Addtodo from "./Component/Todolist/Addtodo";
+import UserTodo from "./Component/Todolist/UserTodo";
+import UserDashboard from "./Component/Todolist/UserDashboard";
+import TodoAnalytics from "./Component/Todolist/TodoAnalytics";
+import EditTodo from "./Component/Todolist/EditTodo";
+import UserHomePage from "./Component/Todolist/UserHomePage";
+import UserCreateTodo from "./Component/Todolist/UserCreateTodo";
 const App = () => {
   return (
     <div>
@@ -20,8 +26,14 @@ const App = () => {
           <Route path="/posts/userdetails" element={<UserDetails />} />
           <Route path="/posts/userdetails/useredit" element={<UserEdit />} />
           <Route path="/posts/userdetails/userdelete" element={<UserDelete />}/>
-          <Route path="/todo/createtodo" element={<Addtodo />} />
+        
           <Route path="/posts/userdetails" element={<UserDetails />} />
+          <Route path="/todo/createtodo" element={<UserCreateTodo />} />
+          <Route path="/usertodo" element={<UserTodo />} />
+          <Route path="/dashboard" element={<UserDashboard />} />
+          <Route path="/home" element={<UserHomePage />} />
+          <Route path="/todo/analytics" element={<TodoAnalytics />} />
+          <Route path="/todo/edit/:id" element={<EditTodo />} />
         </Routes>
       </Router>
     </div>
