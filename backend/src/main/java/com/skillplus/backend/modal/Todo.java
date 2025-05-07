@@ -1,74 +1,69 @@
 package com.skillplus.backend.modal;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
-
-import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
-@Getter
-@Setter
-@Table(name = "todos")
 public class Todo {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
     private Long id;
 
-    @Column(name = "steps", columnDefinition = "TEXT")
-    private String steps; // Steps will be stored as a JSON string
+    private String title;
 
-    @Column(name = "timestamp")
-    private LocalDateTime timestamp;
+    @Column(nullable = false)
+    private boolean completed = false;
 
-    @ManyToOne
-    @JoinColumn(name = "user_id")
-    private User user;
+    @Column(nullable = false)
+    private boolean privateTodo = false;
 
-    // Default constructor
-    public Todo() {
-        this.timestamp = LocalDateTime.now(); // Set current time when creating a todo
+
+    private Long userId; // store user ID instead of User object
+
+    @OneToMany(mappedBy = "todo", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonManagedReference
+    private List<Step> steps;
+
+
+    // Getters and setters
+    public Long getId() { return id; }
+
+    public void setId(Long id) { this.id = id; }
+
+    public String getTitle() { return title; }
+
+    public void setTitle(String title) { this.title = title; }
+
+    public Long getUserId() { return userId; }
+
+    public void setUserId(Long userId) { this.userId = userId; }
+
+    public List<Step> getSteps() { return steps; }
+
+    public boolean isCompleted() {
+        return completed;
     }
 
-    // Constructor with steps
-    public Todo(String steps, User user) {
+    public void setCompleted(boolean completed) {
+        this.completed = completed;
+    }
+
+    public boolean isPrivateTodo() {
+        return privateTodo;
+    }
+
+    public void setPrivateTodo(boolean privateTodo) {
+        this.privateTodo = privateTodo;
+    }
+
+    public void setSteps(List<Step> steps) {
         this.steps = steps;
-        this.user = user;
-        this.timestamp = LocalDateTime.now();
-    }
-
-    // Getter and Setter methods
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getSteps() {
-        return steps;
-    }
-
-    public void setSteps(String steps) {
-        this.steps = steps;
-    }
-
-    public LocalDateTime getTimestamp() {
-        return timestamp;
-    }
-
-    public void setTimestamp(LocalDateTime timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
+        if (steps != null) {
+            for (Step step : steps) {
+                step.setTodo(this);
+            }
+        }
     }
 }
