@@ -89,9 +89,9 @@ const UserPost = () => {
             <i className="bi bi-plus-square-fill"></i>
             <span>Create Post</span>
           </div>
-          <div className="menu-item" onClick={() => navigate("/todo/createtodo")}>
+          <div className="menu-item" onClick={() => navigate("/usertodo")}>
             <i className="bi bi-list-task"></i>
-            <span>Create Todo</span>
+            <span>Todo</span>
           </div>
         </div>
         
