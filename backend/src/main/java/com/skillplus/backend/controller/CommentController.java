@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import com.skillplus.backend.modal.Comment;
 import com.skillplus.backend.service.CommentService;
+import org.springframework.web.multipart.MultipartFile;
 
 @RestController
 @RequestMapping("/app/comment")
@@ -20,12 +21,15 @@ public class CommentController {
     private CommentService commentService;
 
     @PostMapping("/addcomment")
-    public Comment addComment(@RequestBody Map<String, Object> requestData) {
-        String content = (String) requestData.get("content");
-        Long userId = ((Number) requestData.get("userId")).longValue();
-        Long postId = ((Number) requestData.get("postId")).longValue();
-        return commentService.addComment(content, userId, postId);
+    public Comment addComment(
+            @RequestParam("content") String content,
+            @RequestParam("userId") Long userId,
+            @RequestParam("postId") Long postId,
+            @RequestParam(value = "image", required = false) MultipartFile image) {
+
+        return commentService.addComment(content, image, userId, postId);
     }
+
 
     @GetMapping("/getcomment")
     public List<Comment> getComment(@RequestParam Long postId) {

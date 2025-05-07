@@ -11,9 +11,11 @@ import org.springframework.stereotype.Service;
 
 import com.skillplus.backend.modal.Post;
 import com.skillplus.backend.modal.User;
+import org.springframework.web.multipart.MultipartFile;
 
 @Service
 public class CommentService {
+    private final String path = "C:/Users/pics/";
 
     @Autowired
     private CommentRepository commentRepository;
@@ -25,13 +27,17 @@ public class CommentService {
     private PostRepository postRepository;
 
     // Add comment
-    public Comment addComment(String content, Long userId, Long postId) {
+    public Comment addComment(String content, MultipartFile image, Long userId, Long postId) {
 
         User user = userRepository.findById(userId).orElseThrow(() -> new IllegalArgumentException("User not found"));
         Post post = postRepository.findById(postId).orElseThrow(() -> new IllegalArgumentException("Post not found"));
 
         if (content == null || content.isEmpty()) {
             throw new IllegalArgumentException("Empty comment cannot be posted");
+        }
+
+        if (image == null || image.isEmpty()) {
+            throw new IllegalArgumentException("Please select an image");
         }
 
         if (user == null) {
@@ -42,8 +48,20 @@ public class CommentService {
             throw new IllegalArgumentException("Post not found");
         }
 
+        String fileName = System.currentTimeMillis() + "_" + image.getOriginalFilename();
+        String filePath = path + "/" + fileName;
+
+        try {
+            image.transferTo(new java.io.File(filePath));
+        } catch (Exception e) {
+            throw new RuntimeException("Failed to upload file: " + e.getMessage());
+        }
+
+        String cimageUrl = "http://localhost:8080/" + fileName;
+
         Comment comment = new Comment();
         comment.setContent(content);
+        comment.setCimageUrl(cimageUrl);
         comment.setUser(user);
         comment.setPost(post);
         return commentRepository.save(comment);
