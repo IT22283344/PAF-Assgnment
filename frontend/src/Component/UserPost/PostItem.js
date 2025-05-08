@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import CommentModal from "./CommentModal";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import UserLike from "./UserLike";
+import CommentModal from "./CommentModal";
 
 const PostItem = ({ post, onDelete }) => {
-  const [showModal, setShowModal] = useState(false);
+  const [showComments, setShowComments] = useState(false);
 
   const postDate = new Date(post.timestamp).toLocaleDateString();
   const postTime = new Date(post.timestamp).toLocaleTimeString();
@@ -25,6 +25,7 @@ const PostItem = ({ post, onDelete }) => {
               <a
                 className="dropdown-item text-danger"
                 onClick={() => onDelete(post.id)}
+                style={{ cursor: "pointer" }}
               >
                 Delete
               </a>
@@ -36,7 +37,12 @@ const PostItem = ({ post, onDelete }) => {
         alt="post"
         className="card-img-top img-fluid"
         src={post.imageUrl}
-        style={{ maxHeight: "500px", objectFit: "cover", borderRadius: "10px" }}
+        style={{
+          maxHeight: "500px",
+          objectFit: "cover",
+          borderRadius: "1px",
+          marginRight: "5px",
+        }}
       />
       <div className="card-body">
         <p>{post.content}</p>
@@ -47,16 +53,26 @@ const PostItem = ({ post, onDelete }) => {
           <UserLike postId={post.id} />
           <i
             className="bi bi-chat px-3 text-secondary"
-            onClick={() => setShowModal(true)}
+            onClick={() => setShowComments((prev) => !prev)}
             style={{ cursor: "pointer", fontSize: "1.5rem" }}
           ></i>
         </div>
+
+        {/* Inline Comment Section */}
+        {showComments && (
+          <div className="comment-box border-top pt-3 position-relative">
+            {/* Close button */}
+            <button
+              className="btn btn-sm btn-outline-secondary position-absolute top-0 end-0 m-2"
+              onClick={() => setShowComments(false)}
+            >
+              ✕
+            </button>
+
+            <CommentModal postId={post.id} />
+          </div>
+        )}
       </div>
-      
-      {/* Comment Modal */}
-      {showModal && (
-        <CommentModal postId={post.id} onClose={() => setShowModal(false)} />
-      )}
     </div>
   );
 };

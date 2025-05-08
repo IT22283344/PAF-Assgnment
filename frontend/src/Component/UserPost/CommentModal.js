@@ -3,25 +3,22 @@ import Server from "../../Server/Server";
 import CommentList from "./CommentList";
 import CommentInput from "./CommentInput";
 import { toast } from "react-toastify";
+import "./comment.css"; // optional if you want animations
 
-const CommentModal = ({ postId, onClose }) => {
+const CommentModal = ({ postId }) => {
   const [comments, setComments] = useState([]);
   const userId = localStorage.getItem("userId");
 
   useEffect(() => {
     Server.get(`/comment/getcomment?postId=${postId}`)
-      .then((response) => {
-        setComments(response.data);
-      })
-      .catch((e) => {
-        toast.error(e.response.data);
-      });
+      .then((response) => setComments(response.data))
+      .catch((e) => toast.error(e.response?.data || "Failed to load comments"));
   }, [postId]);
-  
+
   const addComment = (formData) => {
     formData.append("userId", userId);
     formData.append("postId", postId);
-  
+
     Server.post(`/comment/addcomment`, formData, {
       headers: {
         "Content-Type": "multipart/form-data",
@@ -29,20 +26,18 @@ const CommentModal = ({ postId, onClose }) => {
     })
       .then((response) => {
         setComments([...comments, response.data]);
-        toast.success("Comment added successfully!");
+        toast.success("Comment added");
       })
       .catch(() => toast.error("Failed to add comment"));
   };
-  
-  
 
   const deleteComment = (commentId) => {
     Server.delete(`/comment/deletecomment?commentId=${commentId}&userId=${userId}&postId=${postId}`)
       .then(() => {
-        setComments(comments.filter((comment) => comment.id !== commentId));
-        toast.success("Comment deleted successfully");
+        setComments(comments.filter((c) => c.id !== commentId));
+        toast.success("Comment deleted");
       })
-      .catch((e) => toast.error(e.response.data));
+      .catch((e) => toast.error(e.response?.data || "Error deleting comment"));
   };
 
   const editComment = (commentId, newContent) => {
@@ -51,38 +46,21 @@ const CommentModal = ({ postId, onClose }) => {
       userId: Number(userId),
       postId: Number(postId),
       content: newContent,
-    })    
+    })
       .then((res) => {
-        setComments((prevComments) =>
-          prevComments.map((comment) =>
-            comment.id === commentId ? res.data : comment
-          )
+        setComments((prev) =>
+          prev.map((c) => (c.id === commentId ? res.data : c))
         );
-        toast.success("Comment updated successfully");
+        toast.success("Comment updated");
       })
-      .catch((e) => toast.error(e.response?.data || "Failed to update comment"));
+      .catch((e) => toast.error(e.response?.data || "Error updating comment"));
   };
 
   return (
-    <div className="modal show d-block">
-      <div className="modal-dialog modal-dialog-scrollable">
-        <div className="modal-content">
-          <div className="modal-header">
-            <h4 className="modal-title">Comments</h4>
-            <button type="button" className="btn-close" onClick={onClose}></button>
-          </div>
-          <div className="modal-body">
-            <CommentList
-              comments={comments}
-              onDelete={deleteComment}
-              onEdit={editComment}
-            />
-          </div>
-          <div className="modal-footer">
+    <div className="comment-box">
             <CommentInput onAdd={addComment} />
-          </div>
-        </div>
-      </div>
+
+      <CommentList comments={comments} onDelete={deleteComment} onEdit={editComment} />
     </div>
   );
 };
