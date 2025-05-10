@@ -41,4 +41,10 @@ public class LikeController {
         return likeService.getLikesByUser(userId);
     }
 
+    @GetMapping("/count")
+    public long getLikeCount(@RequestParam long postId) {
+        return likeService.getLikeCountByPostId(postId);
+    }
+
+
 }

@@ -4,6 +4,8 @@ import java.util.List;
 
 import com.skillplus.backend.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -52,10 +54,16 @@ public class PostController {
     }
 
     @DeleteMapping("/delete/{postId}")
-    public String deletePost(@PathVariable Long postId ,@RequestParam Long
-    userId) {
-    postService.deleteById(postId,userId);
-    return "Post deleted successfully";
+    public ResponseEntity<String> deletePost(@PathVariable Long postId, @RequestParam Long userId) {
+        try {
+            postService.deleteById(postId, userId);
+            return ResponseEntity.ok("Post deleted successfully");
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.status(HttpStatus.FORBIDDEN).body(e.getMessage());
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Server error: " + e.getMessage());
+        }
     }
+
 
 }

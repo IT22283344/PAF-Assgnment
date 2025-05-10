@@ -58,8 +58,7 @@ const CommentModal = ({ postId }) => {
 
   return (
     <div className="comment-box">
-            <CommentInput onAdd={addComment} />
-
+      <CommentInput onAdd={addComment} />
       <CommentList comments={comments} onDelete={deleteComment} onEdit={editComment} />
     </div>
   );
