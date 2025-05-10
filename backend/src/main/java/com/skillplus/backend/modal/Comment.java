@@ -38,6 +38,10 @@ public class Comment {
         this.content = content;
     }
 
+    public String getCimageUrl() {return cimageUrl;}
+
+    public void setCimageUrl(String cimageUrl) {this.cimageUrl = cimageUrl;}
+
     public User getUser() {
         return user;
     }
@@ -56,6 +60,10 @@ public class Comment {
 
     @Column(name="content")
     private String content;
+
+
+    @Column(name = "c_image_url")
+    private String cimageUrl;
 
     @ManyToOne
     @JoinColumn(name="user_id") 

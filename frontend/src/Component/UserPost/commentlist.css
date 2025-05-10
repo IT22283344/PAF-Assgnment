@@ -1,0 +1,23 @@
+.comment-scroll-box {
+    max-height: 400px; /* Adjust as needed */
+    overflow-y: auto;
+    padding-right: 10px;
+    scroll-behavior: smooth;
+    border: 1px solid #dee2e6;
+    border-radius: 8px;
+    background-color: #f8f9fa;
+  }
+  
+  .comment-scroll-box::-webkit-scrollbar {
+    width: 6px;
+  }
+  
+  .comment-scroll-box::-webkit-scrollbar-thumb {
+    background-color: #ced4da;
+    border-radius: 4px;
+  }
+  
+  .comment-scroll-box::-webkit-scrollbar-track {
+    background-color: transparent;
+  }
+  
