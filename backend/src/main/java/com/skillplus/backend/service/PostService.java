@@ -16,7 +16,7 @@ import com.skillplus.backend.modal.User;
 @Service
 public class PostService {
 
-    private final String path = "C:/Users/pics/";
+    private final String path = "E:/pafpic";
 
     @Autowired
     private PostRepository postRepository;

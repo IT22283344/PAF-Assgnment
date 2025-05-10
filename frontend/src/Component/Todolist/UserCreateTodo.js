@@ -36,7 +36,8 @@ const UserCreateTodo = () => {
     Server.post("/todo/create", payload)
       .then(() => {
         toast.success("Todo created successfully!");
-        setTimeout(() => navigate("usertodo"), 2000);
+       setTimeout(() => navigate("/usertodo"), 2000);
+
       })
       .catch((err) => {
         toast.error(err.response?.data || "Failed to create todo");

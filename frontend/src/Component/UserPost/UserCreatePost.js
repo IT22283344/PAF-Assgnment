@@ -11,7 +11,7 @@ const UserCreatePost = () => {
   const [error, setError] = useState(null);
 
   const userId = localStorage.getItem("userId");
-//   console.log(userId);
+  //   console.log(userId);
 
   const handleChange = (e) => {
     const { id, value, files } = e.target;
@@ -39,7 +39,7 @@ const UserCreatePost = () => {
         // console.log("success")
         toast.success("Posted Successfully");
         setPost({ image: null, content: "" }); // Reset form
-        setInterval(() => {
+        setTimeout(() => {
           navigate("/posts");
         }, 2000);
       })
@@ -90,7 +90,9 @@ const UserCreatePost = () => {
         <button onClick={handlePost} className="btn btn-info w-100 mt-2">
           Post
         </button>
-        <a className="btn btn-dark mt-2 w-100" href="/posts">Back</a>
+        <a className="btn btn-dark mt-2 w-100" href="/posts">
+          Back
+        </a>
       </form>
       <ToastContainer />
     </div>
