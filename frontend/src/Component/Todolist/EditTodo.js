@@ -11,7 +11,6 @@ const EditTodo = () => {
   const { id } = useParams();
   const navigate = useNavigate();
 
-  // Fetch the current todo details
   useEffect(() => {
     axios
       .get(`http://localhost:8080/app/todo/${id}`)
@@ -25,38 +24,32 @@ const EditTodo = () => {
       });
   }, [id]);
 
-  // Handle title change
   const handleTitleChange = (e) => {
     setTitle(e.target.value);
   };
 
-  // Handle step change
   const handleStepChange = (index, value) => {
     const updatedSteps = [...steps];
     updatedSteps[index].description = value;
     setSteps(updatedSteps);
   };
 
-  // Add a new empty step
   const handleAddStep = () => {
     setSteps([...steps, { id: null, description: "" }]);
   };
 
-  // Remove a step from the UI
   const handleRemoveStep = (index) => {
     const updatedSteps = [...steps];
     updatedSteps.splice(index, 1);
     setSteps(updatedSteps);
   };
 
-  // Delete a step from the database
   const handleDeleteStep = (stepId) => {
     if (window.confirm("Are you sure you want to delete this step?")) {
       axios
         .delete(`http://localhost:8080/app/todo/deletestep/${stepId}`)
         .then(() => {
           toast.success("Step deleted successfully!");
-          // Remove the step from the state after successful deletion
           setSteps(steps.filter((step) => step.id !== stepId));
         })
         .catch((error) => {
@@ -66,7 +59,6 @@ const EditTodo = () => {
     }
   };
 
-  // Update the todo and its steps
   const handleUpdate = (e) => {
     e.preventDefault();
 
@@ -87,7 +79,6 @@ const EditTodo = () => {
       });
   };
 
-  // Delete the entire todo
   const handleDelete = () => {
     if (window.confirm("Are you sure you want to delete this todo?")) {
       axios
@@ -109,9 +100,7 @@ const EditTodo = () => {
         <h2 style={styles.header}>Edit Todo</h2>
         <form onSubmit={handleUpdate}>
           <div style={styles.formGroup}>
-            <label htmlFor="title" style={styles.label}>
-              Title
-            </label>
+            <label htmlFor="title" style={styles.label}>Title</label>
             <input
               type="text"
               id="title"
@@ -134,10 +123,11 @@ const EditTodo = () => {
               />
               <button
                 type="button"
-                style={styles.removeButton}
-                onClick={() => handleDeleteStep(step.id)}
+                style={styles.iconButton}
+                onClick={() => step.id ? handleDeleteStep(step.id) : handleRemoveStep(index)}
+                title="Delete Step"
               >
-                <FaTrash /> Delete Step
+                <FaTrash size={16} />
               </button>
             </div>
           ))}
@@ -170,7 +160,6 @@ const EditTodo = () => {
   );
 };
 
-// Inline CSS for styling
 const styles = {
   container: {
     backgroundColor: "#f8f9fa",
@@ -214,7 +203,14 @@ const styles = {
   inputGroup: {
     display: "flex",
     alignItems: "center",
+    gap: "0.5rem",
     marginBottom: "0.75rem",
+  },
+  iconButton: {
+    backgroundColor: "transparent",
+    border: "none",
+    color: "#dc3545",
+    cursor: "pointer",
   },
   addButton: {
     backgroundColor: "#198754",
@@ -223,7 +219,6 @@ const styles = {
     border: "none",
     borderRadius: "5px",
     cursor: "pointer",
-    marginRight: "0.5rem",
   },
   deleteButton: {
     backgroundColor: "#dc3545",
@@ -232,7 +227,6 @@ const styles = {
     border: "none",
     borderRadius: "5px",
     cursor: "pointer",
-    marginLeft: "0.5rem",
   },
   saveButton: {
     backgroundColor: "#0d6efd",
@@ -246,6 +240,8 @@ const styles = {
     display: "flex",
     justifyContent: "space-between",
     marginTop: "1.5rem",
+    flexWrap: "wrap",
+    gap: "0.5rem",
   },
 };
 
