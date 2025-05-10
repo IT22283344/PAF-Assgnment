@@ -2,6 +2,7 @@ package com.skillplus.backend.repository;
 
 import java.util.List;
 
+import jakarta.transaction.Transactional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -17,8 +18,13 @@ public interface LikeRepository extends JpaRepository<Like, Long> {
 
     Boolean existsByUserIdAndPostId(Long userId, long postId);
 
-    void deleteByPostId(Long postId);
 
     Like findByUserIdAndPostId(Long userId, Long postId);
+
+    long countByPostId(Long postId);
+
+    @Transactional
+    void deleteByPostId(Long postId);
+
 
 }

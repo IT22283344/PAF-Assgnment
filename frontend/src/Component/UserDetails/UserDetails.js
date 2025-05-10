@@ -6,6 +6,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
 import { FiEdit, FiArrowLeft, FiTrash2, FiMail, FiPhone, FiLock, FiUser } from "react-icons/fi";
 import { RiVerifiedBadgeFill } from "react-icons/ri";
+import { Link } from "lucide-react";
 
 const UserDetails = () => {
   const [userDetails, setUserDetails] = useState([]);
@@ -54,7 +55,54 @@ const UserDetails = () => {
   }
 
   return (
-    <div className="container-fluid min-vh-100 bg-light p-0">
+    <div>
+      <nav className="app-sidebar">
+        <div className="sidebar-header">
+          <Link to="/" className="logo-link">
+            <div className="logo">
+              <span className="logo-icon">SP</span>
+              <span className="logo-text ">SkillPlus+</span>
+            </div>
+          </Link>
+        </div>
+
+        <div className="sidebar-menu">
+          <div className="menu-item active">
+            <i className="bi bi-house-door-fill"></i>
+            <span>Home</span>
+          </div>
+          <div className="menu-item">
+            <i className="bi bi-people-fill"></i>
+            <span>Network</span>
+          </div>
+          <div className="menu-item">
+            <i className="bi bi-chat-left-text-fill"></i>
+            <span>Messaging</span>
+          </div>
+          <div className="menu-item">
+            <i className="bi bi-bell-fill"></i>
+            <span>Notifications</span>
+          </div>
+
+          <div className="menu-divider"></div>
+
+          <div
+            className="menu-item"
+            onClick={() => navigate("/posts/createpost")}
+          >
+            <i className="bi bi-plus-square-fill"></i>
+            <span>Create Post</span>
+          </div>
+          <div className="menu-item" onClick={() => navigate("/usertodo")}>
+            <i className="bi bi-list-task"></i>
+            <span>Todo</span>
+          </div>
+        </div>
+
+       
+      </nav>
+
+    <div className="container-fluid ">
       {error && <div className="alert alert-danger">{error}</div>}
       
       {/* Cover Photo */}
@@ -209,6 +257,7 @@ const UserDetails = () => {
           background: linear-gradient(to bottom, transparent, #f8f9fa);
         }
       `}</style>
+      </div>
     </div>
   );
 };

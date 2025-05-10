@@ -3,6 +3,8 @@ package com.skillplus.backend.service;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import com.skillplus.backend.repository.CommentRepository;
+import com.skillplus.backend.repository.LikeRepository;
 import com.skillplus.backend.repository.PostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,6 +21,18 @@ public class PostService {
     @Autowired
     private PostRepository postRepository;
 
+    @Autowired
+    private LikeRepository likeRepository;
+    @Autowired
+    private CommentRepository commentRepository;
+
+
+    public PostService(PostRepository postRepository, LikeRepository likeRepository, CommentRepository commentRepository) {
+        this.postRepository = postRepository;
+        this.likeRepository = likeRepository;
+        this.commentRepository = commentRepository;
+
+    }
     public Post getPostById(Long postId) {
         return postRepository.findById(postId)
                 .orElseThrow(() -> new IllegalArgumentException("Post not found with ID: " + postId));
@@ -67,18 +81,25 @@ public class PostService {
         return postRepository.findAllByOrderByTimestampDesc(); // Fetch posts sorted by timestamp
     }
 
-    public void deleteById(Long postId, Long UserId) {
+    public void deleteById(Long postId, Long userId) {
         Post post = postRepository.findById(postId)
                 .orElseThrow(() -> new IllegalArgumentException("Post not found"));
-        if (!post.getUser().getId().equals(UserId)) {
+
+        if (!post.getUser().getId().equals(userId)) {
             throw new IllegalArgumentException("You cannot delete this post");
         }
 
-        // if (!postRepository.existsByIdAndUserId(postId, UserId)) {
-        // throw new IllegalArgumentException("You cannot delete this post");
-        // }
+        // Delete comments associated with the post
+        commentRepository.deleteByPostId(postId);
 
+        // Delete likes associated with the post
+        likeRepository.deleteByPostId(postId);
+
+        // Now delete the post
         postRepository.delete(post);
     }
+
+
+
 
 }

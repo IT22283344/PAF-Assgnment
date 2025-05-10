@@ -683,3 +683,18 @@
       flex: 1 0 40%;
     }
   }
+
+  /*Follow section */
+  .users-list {
+  background: #fff;
+  padding: 10px;
+  border-radius: 8px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.user-item {
+  border-bottom: 1px solid #ddd;
+  padding: 6px 0;
+  margin-left: 5px;
+}
