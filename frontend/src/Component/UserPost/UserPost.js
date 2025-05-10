@@ -141,37 +141,7 @@ const UserPost = () => {
 
       {/* Main Content */}
       <main className="app-main">
-        {/* Top Navigation */}
-        <div className="top-nav">
-          <div className="search-container">
-            <i className="bi bi-search"></i>
-            <input
-              type="text"
-              placeholder="Search posts..."
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-            />
-          </div>
-          <div className="nav-icons">
-            <div className="nav-icon">
-              <i className="bi bi-house-door-fill"></i>
-              <span>Home</span>
-            </div>
-            <div className="nav-icon">
-              <i className="bi bi-people-fill"></i>
-              <span>My Network</span>
-            </div>
-            <div className="nav-icon">
-              <i className="bi bi-chat-left-text-fill"></i>
-              <span>Messaging</span>
-            </div>
-            <div className="nav-icon">
-              <i className="bi bi-bell-fill"></i>
-              <span>Notifications</span>
-            </div>
-          </div>
-        </div>
-
+        
         {/* Content Area */}
         <div className="content-container">
           {/* Left Sidebar */}
