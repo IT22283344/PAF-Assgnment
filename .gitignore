@@ -1,0 +1,47 @@
+# IntelliJ IDEA specific files
+.idea/
+*.iml
+*.iws
+*.ipr
+out/
+
+# Maven specific files
+target/
+*.jar
+*.war
+*.ear
+
+# Logs
+logs/
+*.log
+
+# Temporary files
+*.swp
+*.swo
+
+# Spring Boot specific
+*.properties
+*.yml
+*.yaml
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Node.js (if used)
+node_modules/
+
+# Package files
+*.tar.gz
+*.zip
+
+# Build directories
+dist/
+build/
+
+# IDE backups and caches
+*.bak
+*.tmp
+
+# Exclude environment-specific configurations
+backend/src/main/resources/application.properties
