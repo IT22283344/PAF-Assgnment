@@ -1,5 +1,6 @@
 package com.skillplus.backend.repository;
 
+import jakarta.transaction.Transactional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -18,5 +19,9 @@ public interface CommentRepository extends JpaRepository<Comment, Long> {
     boolean existsByUserIdAndPostId(long userId, long postId);
 
     Optional<Comment> findByIdAndUserId(long commentId, long userId);
+
+    @Transactional
+    void deleteByPostId(Long postId);
+
 
 }
