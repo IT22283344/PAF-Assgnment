@@ -65,5 +65,17 @@ public class PostController {
         }
     }
 
+    //     @DeleteMapping("/delte/{postId}")
+    // public ResponseEntity<String> deletePost(@PathVariable Long postId, @RequestParam Long userId) {
+    //     try {
+    //         postService.deleteById(postId, userId);
+    //         return ResponseEntity.ok("Post deleted successfully");
+    //     } catch (IllegalArgumentException e) {
+    //         return ResponseEntity.status(HttpStatus.FORBIDDEN).body(e.getMessage());
+    //     } catch (Exception e) {
+    //         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Server error: " + e.getMessage());
+    //     }
+    // }
+
 
 }
