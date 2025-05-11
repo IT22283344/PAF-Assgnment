@@ -31,7 +31,7 @@ public class PostService {
         this.postRepository = postRepository;
         this.likeRepository = likeRepository;
         this.commentRepository = commentRepository;
-
+// the post and services 
     }
     public Post getPostById(Long postId) {
         return postRepository.findById(postId)
