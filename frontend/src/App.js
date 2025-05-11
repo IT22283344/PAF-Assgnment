@@ -14,12 +14,10 @@ import TodoAnalytics from "./Component/Todolist/TodoAnalytics";
 import EditTodo from "./Component/Todolist/EditTodo";
 import UserHomePage from "./Component/Todolist/UserHomePage";
 import UserCreateTodo from "./Component/Todolist/UserCreateTodo";
-import Header from "./Component/Header/Header";
 const App = () => {
   return (
     <div>
       <Router>
-        <Header/>
         <Routes>
           <Route path="/" element={<UserLogin />} />
           <Route path="/signup" element={<UserSignup />} />

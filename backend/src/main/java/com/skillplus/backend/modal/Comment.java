@@ -1,17 +1,13 @@
 package com.skillplus.backend.modal;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
+
+import java.time.LocalDateTime;
 
 @Entity
 @Getter
@@ -24,6 +20,26 @@ public class Comment {
     @Column(name="id")
     private Long id;
 
+    @Column(name="content")
+    private String content;
+
+    @Column(name = "c_image_url")
+    private String cimageUrl;
+
+    @ManyToOne
+    @JoinColumn(name="user_id")
+    private User user;
+
+    @Column(name = "created_at")
+    @CreationTimestamp
+    private LocalDateTime createdAt;
+
+    @ManyToOne
+    @JoinColumn(name = "post_id", nullable = false)
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    private Post post;
+
+    // Getters and Setters
     public Long getId() {
         return id;
     }
@@ -40,9 +56,13 @@ public class Comment {
         this.content = content;
     }
 
-    public String getCimageUrl() {return cimageUrl;}
+    public String getCimageUrl() {
+        return cimageUrl;
+    }
 
-    public void setCimageUrl(String cimageUrl) {this.cimageUrl = cimageUrl;}
+    public void setCimageUrl(String cimageUrl) {
+        this.cimageUrl = cimageUrl;
+    }
 
     public User getUser() {
         return user;
@@ -60,22 +80,11 @@ public class Comment {
         this.post = post;
     }
 
-    @Column(name="content")
-    private String content;
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
 
-
-    @Column(name = "c_image_url")
-    private String cimageUrl;
-
-    @ManyToOne
-    @JoinColumn(name="user_id") 
-    private User user;
-
-
-    @ManyToOne
-    @JoinColumn(name = "post_id", nullable = false)
-    @OnDelete(action = OnDeleteAction.CASCADE)
-    private Post post;
-
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
+    }
 }
- 

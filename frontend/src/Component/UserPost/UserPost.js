@@ -77,7 +77,6 @@ const UserPost = () => {
       )
     );
   };
-  
 
   return (
     <div className="app-container">
@@ -93,55 +92,48 @@ const UserPost = () => {
         </div>
 
         <div className="sidebar-menu">
-          <div className="menu-item active">
+          <Link to="/posts" className="menu-item active">
             <i className="bi bi-house-door-fill"></i>
             <span>Home</span>
-          </div>
-          <div className="menu-item">
+          </Link>
+          <Link to="/network" className="menu-item">
             <i className="bi bi-people-fill"></i>
             <span>Network</span>
-          </div>
-          <div className="menu-item">
+          </Link>
+          <Link to="/messaging" className="menu-item">
             <i className="bi bi-chat-left-text-fill"></i>
             <span>Messaging</span>
-          </div>
-          <div className="menu-item">
+          </Link>
+          <Link to="/notifications" className="menu-item">
             <i className="bi bi-bell-fill"></i>
             <span>Notifications</span>
-          </div>
+          </Link>
 
           <div className="menu-divider"></div>
 
-          <div
-            className="menu-item"
-            onClick={() => navigate("/posts/createpost")}
-          >
+          <Link to="/posts/createpost" className="menu-item">
             <i className="bi bi-plus-square-fill"></i>
             <span>Create Post</span>
-          </div>
-          <div className="menu-item" onClick={() => navigate("/usertodo")}>
+          </Link>
+          <Link to="/todo/createtodo" className="menu-item">
             <i className="bi bi-list-task"></i>
             <span>Todo</span>
-          </div>
-        </div>
+          </Link>
 
-        <div className="user-profile">
-          <img src={userAvatar} alt={username} className="profile-image" />
-          <div className="profile-info">
-            <span className="profile-name">{username}</span>
-            <span
-              className="profile-title"
-              onClick={() => navigate("/posts/userdetails")}
-            >
-              View Profile
-            </span>
+          <div className="user-profile">
+            <img src={userAvatar} alt={username} className="profile-image" />
+            <div className="profile-info">
+              <span className="profile-name">{username}</span>
+              <Link to="/posts/userdetails" className="profile-title">
+                View Profile
+              </Link>
+            </div>
           </div>
         </div>
       </nav>
 
       {/* Main Content */}
       <main className="app-main">
-        
         {/* Content Area */}
         <div className="content-container">
           {/* Left Sidebar */}
