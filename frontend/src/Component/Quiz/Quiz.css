@@ -1,0 +1,377 @@
+/* Quiz Container Styles */
+.quiz-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.quiz-header {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+.quiz-tabs {
+    display: flex;
+    gap: 10px;
+    margin: 15px 0;
+}
+
+.quiz-tabs button {
+    padding: 8px 16px;
+    background: #f0f0f0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.quiz-tabs button.active {
+    background: #0073b1;
+    color: white;
+}
+
+.create-quiz-btn {
+    align-self: flex-start;
+    padding: 8px 16px;
+    background: #0073b1;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.quiz-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+/* Quiz Card Styles */
+.quiz-card {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    transition: box-shadow 0.3s;
+}
+
+.quiz-card:hover {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.quiz-card-header h3 {
+    margin: 0 0 5px 0;
+    color: #0073b1;
+}
+
+.quiz-description {
+    margin: 0 0 10px 0;
+    color: #666;
+    font-size: 14px;
+}
+
+.quiz-card-details {
+    margin: 10px 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+
+.detail-item {
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+}
+
+.detail-item span {
+    color: #666;
+}
+
+.quiz-card-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: auto;
+}
+
+.action-btn {
+    padding: 6px 12px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.take-quiz-btn {
+    background: #0073b1;
+    color: white;
+}
+
+.edit-btn {
+    background: #ffc107;
+    color: #333;
+}
+
+.results-btn {
+    background: #17a2b8;
+    color: white;
+}
+
+.delete-btn {
+    background: #dc3545;
+    color: white;
+}
+
+/* Quiz Creator Styles */
+.quiz-creator-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.form-group input[type="text"],
+.form-group input[type="number"],
+.form-group textarea {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.add-question-btn {
+    padding: 8px 16px;
+    background: #28a745;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-bottom: 20px;
+}
+
+.form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.cancel-btn {
+    padding: 8px 16px;
+    background: #6c757d;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.submit-btn {
+    padding: 8px 16px;
+    background: #0073b1;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+/* Question Form Styles */
+.question-form {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 15px;
+}
+
+.question-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.remove-question-btn {
+    padding: 4px 8px;
+    background: #dc3545;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.answer-option-input {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 5px 0;
+}
+
+.answer-option-input input[type="text"] {
+    flex-grow: 1;
+    padding: 6px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+/* Quiz Taker Styles */
+.quiz-taker-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.quiz-timer {
+    margin: 10px 0;
+    font-size: 18px;
+}
+
+.quiz-timer span {
+    font-weight: bold;
+    color: #0073b1;
+}
+
+.question-container {
+    margin-bottom: 20px;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+}
+
+.answer-options {
+    margin-top: 10px;
+}
+
+.answer-option {
+    display: flex;
+    align-items: center;
+    margin: 8px 0;
+}
+
+.answer-option input[type="radio"] {
+    margin-right: 10px;
+}
+
+.submit-quiz-btn {
+    padding: 10px 20px;
+    background: #0073b1;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+/* Quiz Results Styles */
+.quiz-results-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.results-summary {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.score-display {
+    margin-bottom: 15px;
+}
+
+.score-circle {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background: #0073b1;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 10px;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.time-completed {
+    color: #666;
+    font-style: italic;
+}
+
+.question-review {
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+
+.question-review.correct {
+    background-color: #e6f7e6;
+    border-left: 4px solid #28a745;
+}
+
+.question-review.incorrect {
+    background-color: #fff0f0;
+    border-left: 4px solid #dc3545;
+}
+
+.user-answer, .correct-answer {
+    margin-top: 5px;
+    font-size: 14px;
+}
+
+.user-answer span, .correct-answer span {
+    font-weight: bold;
+}
+
+.results-actions {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 30px;
+}
+
+.retake-quiz-btn {
+    padding: 10px 20px;
+    background: #0073b1;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.back-to-quizzes-btn {
+    padding: 10px 20px;
+    background: #6c757d;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+/* Utility Classes */
+.loading {
+    text-align: center;
+    padding: 40px;
+    font-size: 18px;
+}
+
+.error {
+    text-align: center;
+    padding: 40px;
+    color: #dc3545;
+    font-size: 18px;
+}
+
+.no-quizzes {
+    text-align: center;
+    padding: 40px;
+    color: #666;
+    font-size: 16px;
+    grid-column: 1 / -1;
+}
