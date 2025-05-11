@@ -17,7 +17,7 @@ const Header = ({ searchQuery, setSearchQuery }) => {
         />
       </div>
       <div className="nav-icons">
-        <div className="nav-icon" onClick={() => navigate("/")}>
+        <div className="nav-icon" onClick={() => navigate("/posts")}>
           <i className="bi bi-house-door-fill"></i>
           <span>Home</span>
         </div>

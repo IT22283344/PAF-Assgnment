@@ -28,44 +28,41 @@ public class CommentService {
 
     // Add comment
     public Comment addComment(String content, MultipartFile image, Long userId, Long postId) {
-
-        User user = userRepository.findById(userId).orElseThrow(() -> new IllegalArgumentException("User not found"));
-        Post post = postRepository.findById(postId).orElseThrow(() -> new IllegalArgumentException("Post not found"));
-
+        // Validate required fields
         if (content == null || content.isEmpty()) {
-            throw new IllegalArgumentException("Empty comment cannot be posted");
+            throw new IllegalArgumentException("Comment content cannot be empty");
         }
 
-        if (image == null || image.isEmpty()) {
-            throw new IllegalArgumentException("Please select an image");
-        }
-
-        if (user == null) {
-            throw new IllegalArgumentException("User not found");
-        }
-
-        if (post == null) {
-            throw new IllegalArgumentException("Post not found");
-        }
-
-        String fileName = System.currentTimeMillis() + "_" + image.getOriginalFilename();
-        String filePath = path + "/" + fileName;
-
-        try {
-            image.transferTo(new java.io.File(filePath));
-        } catch (Exception e) {
-            throw new RuntimeException("Failed to upload file: " + e.getMessage());
-        }
-
-        String cimageUrl = "http://localhost:8080/" + fileName;
+        User user = userRepository.findById(userId)
+                .orElseThrow(() -> new IllegalArgumentException("User not found"));
+        Post post = postRepository.findById(postId)
+                .orElseThrow(() -> new IllegalArgumentException("Post not found"));
 
         Comment comment = new Comment();
         comment.setContent(content);
-        comment.setCimageUrl(cimageUrl);
         comment.setUser(user);
         comment.setPost(post);
-        return commentRepository.save(comment);
 
+        // Handle image only if provided
+        if (image != null && !image.isEmpty()) {
+            // Validate image size
+            if (image.getSize() > 5 * 1024 * 1024) { // 5MB limit
+                throw new IllegalArgumentException("Image size should be less than 5MB");
+            }
+
+            String fileName = System.currentTimeMillis() + "_" + image.getOriginalFilename();
+            String filePath = path + "/" + fileName;
+
+            try {
+                image.transferTo(new java.io.File(filePath));
+                String cimageUrl = "http://localhost:8080/" + fileName;
+                comment.setCimageUrl(cimageUrl);
+            } catch (Exception e) {
+                throw new RuntimeException("Failed to upload file: " + e.getMessage());
+            }
+        }
+
+        return commentRepository.save(comment);
     }
 
     // See comments
@@ -74,7 +71,7 @@ public class CommentService {
 
         postRepository.findById(postId).orElseThrow(() -> new IllegalArgumentException("Post not found " + postId));
 
-        return commentRepository.findByPostId(postId);
+        return commentRepository.findByPostIdOrderByCreatedAtDesc(postId);
     }
 
     // delete comment

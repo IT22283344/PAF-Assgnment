@@ -1,11 +1,16 @@
 import React, { useState } from "react";
-import "./commentlist.css"; // For styling the scroll view
+import "./commentlist.css";
 
 const CommentList = ({ comments, onDelete, onEdit }) => {
   const [editingCommentId, setEditingCommentId] = useState(null);
   const [editedContent, setEditedContent] = useState("");
   const [editedImage, setEditedImage] = useState(null);
   const userId = Number(localStorage.getItem("userId"));
+
+  // Sort comments by createdAt in descending order (latest first)
+  const sortedComments = [...comments].sort((a, b) => 
+    new Date(b.createdAt) - new Date(a.createdAt)
+  );
 
   const handleEditClick = (comment) => {
     setEditingCommentId(comment.id);
@@ -27,22 +32,32 @@ const CommentList = ({ comments, onDelete, onEdit }) => {
     setEditedImage(null);
   };
 
-  return comments.length > 0 ? (
+  // Format date as "DD/MM/YYYY HH:mm:ss"
+  const formatCommentDate = (dateString) => {
+    const options = {
+      year: "numeric",
+      month: "2-digit",
+      day: "2-digit",
+      hour: "2-digit",
+      minute: "2-digit",
+      second: "2-digit",
+    };
+    return new Date(dateString).toLocaleString(undefined, options);
+  };
+
+  return sortedComments.length > 0 ? (
     <div className="comment-scroll-box">
-      {comments.map((comment) => (
+      {sortedComments.map((comment) => (
         <div key={comment.id} className="comment-item d-flex mb-3">
-          {/*<div className="comment-avatar">
-            <img
-              src={comment.user.profilePicture || "/default-avatar.png"}
-              alt="avatar"
-              className="rounded-circle"
-              style={{ width: 40, height: 40, objectFit: "cover" }}
-            />
-          </div>*/}
           <div className="comment-content flex-grow-1 ms-3">
             <div className="bg-light p-2 rounded-3 position-relative">
-              <div className="d-flex justify-content-between">
-                <strong>{comment.user.username}</strong>
+              <div className="d-flex justify-content-between align-items-center">
+                <div>
+                  <strong>{comment.user.username}</strong>
+                  <span className="text-muted small ms-2">
+                    {formatCommentDate(comment.createdAt)}
+                  </span>
+                </div>
                 {comment.user.id === userId && (
                   <div className="comment-actions">
                     <i
@@ -90,17 +105,16 @@ const CommentList = ({ comments, onDelete, onEdit }) => {
                 </>
               ) : (
                 <>
-                  <p className="mb-1">{comment.content}</p>
+                  <p className="mb-1 mt-2">{comment.content}</p>
                   {comment.cimageUrl && (
                     <img
                       src={comment.cimageUrl}
                       alt="comment-img"
-                      className="rounded"
+                      className="rounded mt-2"
                       style={{
-                        maxHeight: "60px",
+                        maxHeight: "200px",
                         maxWidth: "100%",
-                        objectFit: "cover",
-                        marginTop: "5px",
+                        objectFit: "cover"
                       }}
                     />
                   )}
