@@ -78,3 +78,56 @@ const PostItem = ({ post, onDelete }) => {
 };
 
 export default PostItem;
+
+
+
+
+
+
+
+//           </ul>
+//         </div>
+//       </div>
+//       <img
+//         alt="post"
+//         className="card-img-top img-fluid"
+//         src={post.imageUrl}
+//         style={{
+//           maxHeight: "500px",
+//           objectFit: "cover",
+//           borderRadius: "1px",
+//           marginRight: "5px",
+//         }}
+//       />   
+//       <div className="card-body">
+//         <p>{post.content}</p>
+//         <p className="text-muted small">
+//           Posted on: {postDate} at {postTime}
+//         </p>
+//         <div className="d-flex justify-content-start align-items-center">
+//           <UserLike postId={post.id} />
+//           <i
+//             className="bi bi-chat px-3 text-secondary"
+//             onClick={() => setShowComments((prev) => !prev)}
+//             style={{ cursor: "pointer", fontSize: "1.5rem" }}
+//           ></i>
+//         </div>
+
+//         {/* Inline Comment Section */}
+//         {showComments && (
+//           <div className="comment-box border-top pt-3 position-relative">
+//             {/* Close button */}
+//             <button
+//               className="btn btn-sm btn-outline-secondary position-absolute top-0 end-0 m-2"
+//               onClick={() => setShowComments(false)}
+//             >
+//               ✕
+//             </button>
+
+//             <CommentModal postId={post.id} />
+//           </div>
+//         )}
+//       </div>
+//     </div>
+//   );
+// };
