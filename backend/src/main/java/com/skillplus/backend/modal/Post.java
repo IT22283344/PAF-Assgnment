@@ -68,7 +68,7 @@ public class Post {
     public User getUser() {
         return user;
     }
-
+          // created the post entity class and finalize
     public void setUser(User user) {
         this.user = user;
     }
@@ -78,3 +78,6 @@ public class Post {
     private User user;
 
 }
+
+
+          // created the post entity class and finalize
