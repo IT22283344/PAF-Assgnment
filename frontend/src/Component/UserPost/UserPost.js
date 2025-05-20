@@ -18,7 +18,7 @@ const UserPost = () => {
   const userId = localStorage.getItem("userId");
   const userAvatar =
     localStorage.getItem("avatar") ||
-    "https://randomuser.me/api/portraits/men/32.jpg";
+    "https://media.istockphoto.com/id/1477583639/vector/user-profile-icon-vector-avatar-or-person-icon-profile-picture-portrait-symbol-vector.jpg?s=612x612&w=0&k=20&c=OWGIPPkZIWLPvnQS14ZSyHMoGtVTn1zS8cAgLy1Uh24=";
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -96,7 +96,7 @@ const UserPost = () => {
             <i className="bi bi-house-door-fill"></i>
             <span>Home</span>
           </Link>
-          <Link to="/network" className="menu-item">
+          <Link to="/userlist" className="menu-item">
             <i className="bi bi-people-fill"></i>
             <span>Network</span>
           </Link>
@@ -115,9 +115,12 @@ const UserPost = () => {
             <i className="bi bi-plus-square-fill"></i>
             <span>Create Post</span>
           </Link>
-          <Link to="/todo/createtodo" className="menu-item">
+          <Link to="/usertodo" className="menu-item">
             <i className="bi bi-list-task"></i>
             <span>Todo</span>
+          </Link>
+          <Link to="/" className="menu-item">
+            <span>Logoout</span>
           </Link>
 
           <div className="user-profile">
@@ -151,16 +154,7 @@ const UserPost = () => {
                   Digital Creator at SkillPlus+
                 </p>
 
-                <div className="profile-stats">
-                  <div className="stat-item">
-                    <span>Connections</span>
-                    <strong>1,234</strong>
-                  </div>
-                  <div className="stat-item">
-                    <span>Followers</span>
-                    <strong>567</strong>
-                  </div>
-                </div>
+               
 
                 <div className="profile-premium">
                   <i className="bi bi-star-fill"></i>

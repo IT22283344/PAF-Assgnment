@@ -1,5 +1,6 @@
 package com.skillplus.backend.controller;
 
+import com.skillplus.backend.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -23,6 +24,7 @@ public class UserController {
 
     @Autowired
     private UserService userService;
+    private UserRepository userRepository;
 
     // Register user details
     @PostMapping("/register")
@@ -60,5 +62,10 @@ public class UserController {
     @DeleteMapping("/delete/{userId}")
     public void delete(@PathVariable long userId, @RequestParam String password) {
         userService.delete(userId, password);
+    }
+
+    @GetMapping("/suggestions/{userId}")
+    public List<User> getUserSuggestions(@PathVariable Long userId) {
+        return userRepository.findTop5ByIdNotOrderByIdDesc(userId);
     }
 }

@@ -124,7 +124,7 @@ const UserDetails = () => {
               <div className="profile-header">
                 <div className="avatar-container">
                   <img
-                    src={user.profileImage || "https://cdn.vectorstock.com/i/1000v/92/16/default-profile-picture-avatar-user-icon-vector-46389216.jpg"}
+                    src={user.profileImage || "https://media.istockphoto.com/id/1477583639/vector/user-profile-icon-vector-avatar-or-person-icon-profile-picture-portrait-symbol-vector.jpg?s=612x612&w=0&k=20&c=OWGIPPkZIWLPvnQS14ZSyHMoGtVTn1zS8cAgLy1Uh24="}
                     alt="User"
                     className="profile-avatar"
                   />

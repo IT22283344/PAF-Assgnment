@@ -1,0 +1,188 @@
+/* Network Section Styles */
+.network-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid #e9ecef;
+}
+
+.back-button {
+  background: none;
+  border: none;
+  margin-right: 15px;
+  cursor: pointer;
+  color: #495057;
+  transition: all 0.3s ease;
+}
+
+.back-button:hover {
+  color: #4e73df;
+  transform: translateX(-3px);
+}
+
+.network-tabs {
+  display: flex;
+  margin-bottom: 20px;
+  border-bottom: 1px solid #e9ecef;
+}
+
+.tab-button {
+  padding: 10px 20px;
+  background: none;
+  border: none;
+  border-bottom: 3px solid transparent;
+  font-weight: 600;
+  color: #6c757d;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.tab-button.active {
+  color: #4e73df;
+  border-bottom-color: #4e73df;
+}
+
+.tab-button:hover:not(.active) {
+  color: #4e73df;
+}
+
+/* Users Container */
+.users-container {
+  display: grid;
+  gap: 15px;
+}
+
+.user-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+  transition: all 0.3s ease;
+}
+
+.user-card:hover {
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  transform: translateY(-2px);
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+}
+
+.user-avatar {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 15px;
+  border: 2px solid #f8f9fa;
+}
+
+.user-details h4 {
+  margin-bottom: 5px;
+  font-weight: 600;
+}
+
+.user-title {
+  color: #6c757d;
+  font-size: 0.9rem;
+  margin-bottom: 5px;
+}
+
+.user-mutual {
+  color: #4e73df;
+  font-size: 0.8rem;
+}
+
+.follow-button {
+  padding: 8px 15px;
+  border-radius: 50px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  transition: all 0.3s ease;
+  border: 1px solid #4e73df;
+  background: #4e73df;
+  color: white;
+}
+
+.follow-button.following {
+  background: white;
+  color: #4e73df;
+}
+
+.follow-button:hover {
+  opacity: 0.9;
+  transform: translateY(-2px);
+  box-shadow: 0 3px 10px rgba(78, 115, 223, 0.3);
+}
+
+/* Suggested Users */
+.suggested-user {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.suggested-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 10px;
+}
+
+.suggested-info h6 {
+  margin-bottom: 2px;
+  font-size: 0.9rem;
+}
+
+.suggested-follow {
+  background: none;
+  border: none;
+  color: #4e73df;
+  font-size: 0.8rem;
+  cursor: pointer;
+  padding: 0;
+}
+
+.suggested-follow:hover {
+  text-decoration: underline;
+}
+
+/* Empty State */
+.empty-state {
+  text-align: center;
+  padding: 40px;
+  color: #6c757d;
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+  .right-sidebar {
+    display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .user-card {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .user-info {
+    flex-direction: column;
+    margin-bottom: 10px;
+  }
+  
+  .user-avatar {
+    margin-right: 0;
+    margin-bottom: 10px;
+  }
+}

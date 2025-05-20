@@ -24,7 +24,7 @@ const UserTodo = () => {
   };
 
   const handleDelete = (todoId) => {
-    Server.delete(`/todo/deletestep/${todoId}`)
+    Server.delete(`todo/delete/${todoId}`)
       .then(() => {
         setTodos(todos.filter((t) => t.id !== todoId));
         toast.success("Todo deleted");

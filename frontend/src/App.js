@@ -14,6 +14,8 @@ import TodoAnalytics from "./Component/Todolist/TodoAnalytics";
 import EditTodo from "./Component/Todolist/EditTodo";
 import UserHomePage from "./Component/Todolist/UserHomePage";
 import UserCreateTodo from "./Component/Todolist/UserCreateTodo";
+import Userfollows from "./Component/Follwers/Userfollows";
+
 const App = () => {
   return (
     <div>
@@ -34,6 +36,9 @@ const App = () => {
           <Route path="/home" element={<UserHomePage />} />
           <Route path="/todo/analytics" element={<TodoAnalytics />} />
           <Route path="/todo/edit/:id" element={<EditTodo />} />
+
+          <Route path="/userlist" element={<Userfollows />} />
+
         </Routes>
       </Router>
     </div>
